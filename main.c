@@ -15,7 +15,6 @@ int main(){
         printf("1. Play with a random word\n");
         printf("2. Play the daily puzzle\n");
         printf("3. Exit game\n");
-        printf("4. test current work\n");
         printf("Enter selection here: ");
 
         int choice;
@@ -23,10 +22,12 @@ int main(){
 
         switch(choice){
             case 1:
-                printf("playing with random word");
+                printf("Playing with random word...\n");
+                playGame(words, wordCount, 0);
                 break;
             case 2:
-                printf("playing daily puzzle");
+                printf("Playing daily puzzle..\n");
+                playGame(words, wordCount, 1);
                 break;
             case 3:
                 printf("Closing game. Thanks for playing!\n");
@@ -37,11 +38,6 @@ int main(){
                 }
                 free(words);
                 return 0;
-            case 4:
-                printf("Testing game loop...\n");
-
-                char target[WORD_LENGTH +1];
-                playGame(words, wordCount, 1); //should play game now
             default:
                 printf("Invalid choice, Please enter again.\n");
         }
