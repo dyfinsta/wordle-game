@@ -8,7 +8,7 @@ int main(){
     int wordCount;
 
     //load words
-    getWords("testWords.txt", &words, &wordCount);
+    getWords("word-list.txt", &words, &wordCount);
 
     while(1){
         printf("\n**WORDLE GAME**\n");

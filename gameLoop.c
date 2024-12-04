@@ -37,8 +37,8 @@ void getWords(char *fileName, char ***words, int *wordCount){
         }
 
         strncpy((*words)[*wordCount], line, WORD_LENGTH);
-            (*words)[*wordCount][WORD_LENGTH] = '\0';
-            (*wordCount)++;
+        (*words)[*wordCount][WORD_LENGTH] = '\0';
+        (*wordCount)++;
 
         if(*wordCount >= capacity) {
             capacity *= 2;
@@ -57,11 +57,11 @@ void getWords(char *fileName, char ***words, int *wordCount){
 void compareWords(char *guess, char *target){
     for(int i=0; i<WORD_LENGTH; i++){
         if(guess[i] == target[i]){
-            printf("{ \033[32m%c\033[0m }", guess[i]); //correct letter in correct spot
+            printf("{\033[32m%c\033[0m}", guess[i]); //correct letter in correct spot
         }else if(strchr(target, guess[i])){
-            printf("{ \033[33m%c\033[0m }", guess[i]); //correct letter in wrong place
+            printf("{\033[33m%c\033[0m}", guess[i]); //correct letter in wrong place
         }else{
-            printf("{ \033[37m%c\033[0m }", guess[i]); //incorrect letter
+            printf("{\033[37m%c\033[0m}", guess[i]); //incorrect letter
         }
     }
     printf("\n");
