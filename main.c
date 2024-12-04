@@ -41,7 +41,7 @@ int main(){
                 printf("Testing word selection...\n");
 
                 char target[WORD_LENGTH +1];
-                playGame(words, wordCount, 1); //should select word of the day
+                playGame(words, wordCount, 0); //should select random word now
             default:
                 printf("Invalid choice, Please enter again.\n");
         }
