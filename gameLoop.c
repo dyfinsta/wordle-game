@@ -5,10 +5,10 @@
 #include "gameLoop.h"
 
 void getWords(char *fileName, char ***words, int *wordCount){
-    FILE *file = fopen(filename, "r");
+    FILE *file = fopen(fileName, "r");
     if (!file){
         printf("Error opening word file\n");
-        exit();
+        return 0;
     }
     
     *wordCount = 0;
@@ -16,7 +16,8 @@ void getWords(char *fileName, char ***words, int *wordCount){
     *words = malloc(capacity * sizeof(char *));
     if(!*words){
         printf("Memory allocation failed");
-        exit();
+        fclose(file);
+        return;
     }
 
     char line[WORD_LENGTH + 2]; //extra space for newline
@@ -31,14 +32,23 @@ void getWords(char *fileName, char ***words, int *wordCount){
             *words = realloc(*words, capacity * sizeof(char *));
             if(!*words){
                 printf("Memory allocation for word failed");
-                exit();
+                fclose(file);
+                return;
             }
+
+            //allocate memory
+            (*words)[*wordCount] = malloc((WORD_LENGTH +1) * sizeof(char));
+            if(!(*words)[*wordCount]){
+                printf("Memory allocation for words failed");
+                fclose(file);
+                return;
+            }
+            
             strncpy((*words)[*wordCount], line, WORD_LENGTH);
             (*words)[*wordCount][WORD_LENGTH] = '\0';
             (*wordCount)++;
         }
-
-        fclose(file);
     }
-    
+
+    fclose(file);
 }
