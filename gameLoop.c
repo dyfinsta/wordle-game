@@ -8,7 +8,7 @@ void getWords(char *fileName, char ***words, int *wordCount){
     FILE *file = fopen(fileName, "r");
     if (!file){
         printf("Error opening word file\n");
-        return 0;
+        return;
     }
     
     *wordCount = 0;
@@ -23,9 +23,22 @@ void getWords(char *fileName, char ***words, int *wordCount){
     char line[WORD_LENGTH + 2]; //extra space for newline
     while (fgets(line, sizeof(line), file)){
         line[strcspn(line, "\n")] = '\0'; //remove newline
-        if(strlen(line) == 0){
-            break;
+        
+        if(strlen(line) == 0){ //skip empty lines
+            continue;
         }
+
+        //allocate memory
+        (*words)[*wordCount] = malloc((WORD_LENGTH +1) * sizeof(char));
+        if(!(*words)[*wordCount]){
+            printf("Memory allocation for words failed");
+            fclose(file);
+            return;
+        }
+
+        strncpy((*words)[*wordCount], line, WORD_LENGTH);
+            (*words)[*wordCount][WORD_LENGTH] = '\0';
+            (*wordCount)++;
 
         if(*wordCount >= capacity) {
             capacity *= 2;
@@ -35,18 +48,6 @@ void getWords(char *fileName, char ***words, int *wordCount){
                 fclose(file);
                 return;
             }
-
-            //allocate memory
-            (*words)[*wordCount] = malloc((WORD_LENGTH +1) * sizeof(char));
-            if(!(*words)[*wordCount]){
-                printf("Memory allocation for words failed");
-                fclose(file);
-                return;
-            }
-            
-            strncpy((*words)[*wordCount], line, WORD_LENGTH);
-            (*words)[*wordCount][WORD_LENGTH] = '\0';
-            (*wordCount)++;
         }
     }
 
