@@ -53,3 +53,21 @@ void getWords(char *fileName, char ***words, int *wordCount){
 
     fclose(file);
 }
+
+void playGame(char **words, int wordCount, int daily){
+    char target[WORD_LENGTH + 1];
+
+    if(daily){
+        //get current date
+        time_t t = time(NULL);
+        struct tm *tm_info = localtime(&t);
+
+        //get day of the year
+        int currentDay = tm_info->tm_yday;
+
+        strcpy(target, words[currentDay % wordCount]);
+    }else{
+        srand(time(NULL));
+        strcpy(target, words[rand() % wordCount]);
+    }
+}

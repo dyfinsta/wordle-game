@@ -6,5 +6,6 @@
 #define MAX_GUESSES 6
 
 void getWords(char *fileName, char ***words, int *wordCount);
+void playGame(char **words, int wordCount, int daily);
 
 #endif

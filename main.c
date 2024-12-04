@@ -3,14 +3,6 @@
 #include <string.h>
 #include "gameLoop.h"
 
-void printWords(char **words, int wordCount){
-    printf("words:\n");
-    for(int i=0; i<wordCount; i++){
-        printf("%s\n", words[i]);
-    }
-    printf("words read: %d\n", wordCount);
-}
-
 int main(){
     char **words = NULL;
     int wordCount;
@@ -46,7 +38,13 @@ int main(){
                 free(words);
                 return 0;
             case 4:
-                printWords(words, wordCount);
+                printf("Testing word selection");
+
+                char target[WORD_LENGTH +1];
+                playGame(words, wordCount, 1); //should select word of the day
+
+                printf("Selected word: %s\n", target); //should print selected word
+                break;
             default:
                 printf("Invalid choice, Please enter again.\n");
         }
