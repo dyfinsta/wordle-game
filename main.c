@@ -38,10 +38,10 @@ int main(){
                 free(words);
                 return 0;
             case 4:
-                printf("Testing word selection...\n");
+                printf("Testing game loop...\n");
 
                 char target[WORD_LENGTH +1];
-                playGame(words, wordCount, 0); //should select random word now
+                playGame(words, wordCount, 1); //should play game now
             default:
                 printf("Invalid choice, Please enter again.\n");
         }

@@ -7,5 +7,6 @@
 
 void getWords(char *fileName, char ***words, int *wordCount);
 void playGame(char **words, int wordCount, int daily);
+void compareWords(char *guess, char *target);
 
 #endif
