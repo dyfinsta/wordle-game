@@ -70,4 +70,6 @@ void playGame(char **words, int wordCount, int daily){
         srand(time(NULL));
         strcpy(target, words[rand() % wordCount]);
     }
+
+    printf("Selected word is: %s\n", target);
 }

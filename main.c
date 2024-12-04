@@ -38,13 +38,10 @@ int main(){
                 free(words);
                 return 0;
             case 4:
-                printf("Testing word selection");
+                printf("Testing word selection...\n");
 
                 char target[WORD_LENGTH +1];
                 playGame(words, wordCount, 1); //should select word of the day
-
-                printf("Selected word: %s\n", target); //should print selected word
-                break;
             default:
                 printf("Invalid choice, Please enter again.\n");
         }
