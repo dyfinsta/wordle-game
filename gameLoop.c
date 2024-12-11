@@ -4,7 +4,7 @@
 #include <time.h>
 #include "gameLoop.h"
 
-void getWords(char *fileName, char ***words5, char ***words7 int *wordCount5, int *wordCount7){
+void getWords(char *fileName, char ***words5, char ***words7, int *wordCount5, int *wordCount7){
     FILE *file = fopen(fileName, "r");
     if (!file){
         printf("Error opening word file\n");
@@ -43,7 +43,7 @@ void getWords(char *fileName, char ***words5, char ***words7 int *wordCount5, in
                 }
             }
             (*words5)[*wordCount5] = malloc((WORD_LENGTH + 1) * sizeof(char));
-            if(!(words5)[wordCount5]){
+            if(!(*words5)[*wordCount5]){
                 printf("Memory allocation failed for a 5 letter word\n");
                 fclose(file);
                 return;
@@ -87,8 +87,8 @@ void compareWords(char *guess, char *target){
     printf("\n");
 }
 
-void playGame(char **words, int wordCount, int daily){
-    char target[WORD_LENGTH + 1];
+void playGame(char **words, int wordCount, int daily, int wordLength){
+    char target[wordLength + 1];
 
     if(daily){
         //get current date

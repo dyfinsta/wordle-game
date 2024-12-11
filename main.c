@@ -10,15 +10,14 @@ int main(){
     int wordCount7;
 
     //load words
-    getWords("word-list.txt", &words, &wordCount);
+    getWords("word-list.txt", &words5, &words7, &wordCount5, &wordCount7);
 
     while(1){
         printf("\n**WORDLE GAME**\n");
         printf("1. Play with a random word\n");
         printf("2. Play the daily puzzle\n");
-        printf("3. Play Hard Mode");
+        printf("3. Play Hard Mode\n");
         printf("4. Exit game\n");
-        printf("5. Test current")
         printf("Enter selection here: ");
 
         int choice;
@@ -27,35 +26,34 @@ int main(){
         switch(choice){
             case 1:
                 printf("Playing with random word...\n");
-                playGame(words, wordCount, 0);
+                playGame(words5, wordCount5, 0, WORD_LENGTH);
                 break;
             case 2:
                 printf("Playing daily puzzle..\n");
-                playGame(words, wordCount, 1);
+                playGame(words5, wordCount5, 1, WORD_LENGTH);
                 break;
             case 3:
                 printf("Playing on hard mode...\n");
+                playGame(words7, wordCount7, 0, HARD_WORD_LENGTH);
+                break;
             case 4:
                 printf("Closing game. Thanks for playing!\n");
-            case 5:
-                printf("");
-
+                
                 //free memory upon game exit
-                for(int i=0; i<wordCount; i++){
-                    free(words[i]);
+                for(int i=0; i<wordCount5; i++){
+                    free(words5[i]);
                 }
-                free(words);
+                free(words5);
+                //free memory upon game exit
+                for(int i=0; i<wordCount7; i++){
+                    free(words7[i]);
+                }
+                free(words7);
                 return 0;
             default:
                 printf("Invalid choice, Please enter again.\n");
         }
     }
-
-    for(int i=0; i<wordCount; i++){
-        free(words5[i]);
-        free(words7[i]);
-    }
-    free(words);
     
     return 0;
 }
