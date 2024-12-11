@@ -4,8 +4,10 @@
 #include "gameLoop.h"
 
 int main(){
-    char **words = NULL;
-    int wordCount;
+    char **words5 = NULL;
+    char **words7 = NULL;
+    int wordCount5;
+    int wordCount7;
 
     //load words
     getWords("word-list.txt", &words, &wordCount);
@@ -50,7 +52,8 @@ int main(){
     }
 
     for(int i=0; i<wordCount; i++){
-        free(words[i]);
+        free(words5[i]);
+        free(words7[i]);
     }
     free(words);
     
