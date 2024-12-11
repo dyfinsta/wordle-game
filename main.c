@@ -17,7 +17,8 @@ int main(){
         printf("1. Play with a random word\n");
         printf("2. Play the daily puzzle\n");
         printf("3. Play Hard Mode\n");
-        printf("4. Exit game\n");
+        printf("4. Play the hard daily puzzle\n");
+        printf("5. Exit game\n");
         printf("Enter selection here: ");
 
         int choice;
@@ -37,6 +38,10 @@ int main(){
                 playGame(words7, wordCount7, 0, HARD_WORD_LENGTH);
                 break;
             case 4:
+                printf("Playing hard daily puzzle...\n");
+                playGame(words7, wordCount7, 1, HARD_WORD_LENGTH);
+                break;
+            case 5:
                 printf("Closing game. Thanks for playing!\n");
                 
                 //free memory upon game exit
