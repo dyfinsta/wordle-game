@@ -14,7 +14,9 @@ int main(){
         printf("\n**WORDLE GAME**\n");
         printf("1. Play with a random word\n");
         printf("2. Play the daily puzzle\n");
-        printf("3. Exit game\n");
+        printf("3. Play Hard Mode");
+        printf("4. Exit game\n");
+        printf("5. Test current")
         printf("Enter selection here: ");
 
         int choice;
@@ -30,7 +32,11 @@ int main(){
                 playGame(words, wordCount, 1);
                 break;
             case 3:
+                printf("Playing on hard mode...\n");
+            case 4:
                 printf("Closing game. Thanks for playing!\n");
+            case 5:
+                printf("");
 
                 //free memory upon game exit
                 for(int i=0; i<wordCount; i++){
