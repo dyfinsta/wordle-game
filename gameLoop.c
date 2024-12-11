@@ -74,8 +74,8 @@ void getWords(char *fileName, char ***words5, char ***words7, int *wordCount5, i
     fclose(file);
 }
 
-void compareWords(char *guess, char *target){
-    for(int i=0; i<WORD_LENGTH; i++){
+void compareWords(char *guess, char *target, int wordLength){
+    for(int i=0; i<wordLength; i++){
         if(guess[i] == target[i]){
             printf("{\033[32m%c\033[0m}", guess[i]); //correct letter in correct spot
         }else if(strchr(target, guess[i])){
@@ -107,17 +107,17 @@ void playGame(char **words, int wordCount, int daily, int wordLength){
     printf("Target word chosen. Game start!\n");
 
     for (int attempt = 1; attempt<= MAX_GUESSES; attempt++){
-        char guess[WORD_LENGTH + 1];
+        char guess[wordLength + 1];
         printf("Guess %d/%d: ", attempt, MAX_GUESSES);
-        scanf("%5s", guess);
+        scanf("%s", guess);
 
-        if(strlen(guess) != WORD_LENGTH) {
-            printf("Invalid input. Please enter a 5-letter word.\n");
+        if(strlen(guess) != wordLength) {
+            printf("Invalid input. Please enter a %d-letter word.\n", wordLength);
             attempt--;
             continue;
         }
 
-        compareWords(guess, target);
+        compareWords(guess, target, wordLength);
 
         if(strcmp(guess, target) == 0) {
             printf("Congratulations! You guessed the word!\n");
