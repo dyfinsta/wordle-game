@@ -104,7 +104,7 @@ void playGame(char **words, int wordCount, int daily, int wordLength){
         strcpy(target, words[rand() % wordCount]);
     }
 
-    printf("Target word chosen. Game start!\n");
+    printf("\e[1;95mTarget word chosen. Game start!\n\e[0;37m");
 
     for (int attempt = 1; attempt<= MAX_GUESSES; attempt++){
         char guess[wordLength + 1];

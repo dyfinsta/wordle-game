@@ -13,12 +13,12 @@ int main(){
     getWords("word-list.txt", &words5, &words7, &wordCount5, &wordCount7);
 
     while(1){
-        printf("\n**WORDLE GAME**\n");
-        printf("1. Play with a random word\n");
+        printf("\n\e[1;92m**WORDLE GAME**\n");
+        printf("\e[1;93m1. Play with a random word\n");
         printf("2. Play the daily puzzle\n");
         printf("3. Play Hard Mode\n");
         printf("4. Play the hard daily puzzle\n");
-        printf("5. Exit game\n");
+        printf("\e[1;91m5. Exit game\n\e[0;37m");
         printf("Enter selection here: ");
 
         int choice;
