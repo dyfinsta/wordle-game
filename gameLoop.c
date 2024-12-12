@@ -126,3 +126,49 @@ void playGame(char **words, int wordCount, int daily, int wordLength){
     }
     printf("You ran out of guesses. The word was: %s\n", target);
 }
+
+void getWordsArbitrary(char *fileName, char ***words, char *wordCount){
+    FILE *file = fopen(fileName, "r");
+    if (!file){
+        printf("Error opening word file\n");
+        return;
+    }
+    
+    *wordCount = 0;
+
+    size_t capacity = 10;
+    *words = malloc(capacity * sizeof(char *));
+    if(!words){
+        printf("Memory allocation failed\n");
+        fclose(file);
+        return;
+    }
+
+    char line[MAX_LENGTH + 2]; //extra space for newline
+    while (fgets(line, sizeof(line), file)){
+        line[strcspn(line, "\n")] = '\0'; //remove newline
+        
+        if(strlen(line) == 0){ //skip empty lines
+            continue;
+        }
+
+        if(*wordCount >= capacity) {
+                capacity *=2;
+                *words = realloc(*words, capacity * sizeof(char *));
+                if(!*words){
+                    printf("Memory reallocation failed\n");
+                    fclose(file);
+                    return;
+                }
+            }
+            (*words)[*wordCount] = malloc((MAX_LENGTH + 1) * sizeof(char));
+            if(!(*words)[*wordCount]){
+                printf("Memory allocation failed for word\n");
+                fclose(file);
+                return;
+            }
+            strcpy((*words)[*wordCount], line);
+            (*wordCount)++;
+    }
+    fclose(file);
+}

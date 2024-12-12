@@ -6,11 +6,14 @@
 int main(){
     char **words5 = NULL;
     char **words7 = NULL;
+    char **wordsA = NULL;
     int wordCount5;
     int wordCount7;
+    int wordCountA;
 
     //load words
     getWords("word-list.txt", &words5, &words7, &wordCount5, &wordCount7);
+    getWordsArbitrary("various-words.txt", &wordsA, &wordCountA);
 
     while(1){
         printf("\n\e[1;92m**WORDLE GAME**\n");
@@ -42,6 +45,10 @@ int main(){
                 playGame(words7, wordCount7, 1, HARD_WORD_LENGTH);
                 break;
             case 5:
+                printf("Playing with random word (length 5-9)");
+                printf(wordsA)
+                break;
+            case 6:
                 printf("Closing game. Thanks for playing!\n");
                 
                 //free memory upon game exit
@@ -49,7 +56,7 @@ int main(){
                     free(words5[i]);
                 }
                 free(words5);
-                //free memory upon game exit
+                
                 for(int i=0; i<wordCount7; i++){
                     free(words7[i]);
                 }
