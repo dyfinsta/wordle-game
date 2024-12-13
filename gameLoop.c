@@ -27,7 +27,11 @@ void getWords(char *fileName, char ***words5, char ***words7, int *wordCount5, i
 
     char line[HARD_WORD_LENGTH + 2]; //extra space for newline
     while (fgets(line, sizeof(line), file)){
-        line[strcspn(line, "\n")] = '\0'; //remove newline
+        char *ptr = line + strlen(line) - 1;
+        while(ptr >= line && (*ptr == '\n' || *ptr =='\r')){
+            *ptr = '\0';
+            ptr--;
+        }
         
         if(strlen(line) == 0){ //skip empty lines
             continue;
