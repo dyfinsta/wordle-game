@@ -21,7 +21,9 @@ int main(){
         printf("2. Play the daily puzzle\n");
         printf("3. Play Hard Mode\n");
         printf("4. Play the hard daily puzzle\n");
-        printf("\e[1;91m5. Exit game\n\e[0;37m");
+        printf("5. Play with random word (random length)");
+        printf("6. Play the daily puzzle (random length)");
+        printf("\e[1;91m7. Exit game\n\e[0;37m");
         printf("Enter selection here: ");
 
         int choice;
@@ -65,7 +67,6 @@ int main(){
                     free(words7[i]);
                 }
                 free(words7);
-                return 0;
 
                 for(int i=0; i<wordCountA; i++){
                     free(wordsA[i]);
