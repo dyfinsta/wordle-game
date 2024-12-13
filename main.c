@@ -45,10 +45,14 @@ int main(){
                 playGame(words7, wordCount7, 1, HARD_WORD_LENGTH);
                 break;
             case 5:
-                printf("Playing with random word (length 5-9)");
-                printf(wordsA)
+                printf("Playing with random word (length 5-9)...\n");
+                playGameArb(wordsA, wordCountA, 0);
                 break;
             case 6:
+                printf("Playing daily puzzle (random length)...\n");
+                playGameArb(wordsA, wordCountA, 1);
+                break;
+            case 7:
                 printf("Closing game. Thanks for playing!\n");
                 
                 //free memory upon game exit
@@ -61,6 +65,12 @@ int main(){
                     free(words7[i]);
                 }
                 free(words7);
+                return 0;
+
+                for(int i=0; i<wordCountA; i++){
+                    free(wordsA[i]);
+                }
+                free(wordsA);
                 return 0;
             default:
                 printf("Invalid choice, Please enter again.\n");
