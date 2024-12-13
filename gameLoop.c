@@ -5,6 +5,9 @@
 #include <ctype.h>
 #include "gameLoop.h"
 
+
+//get words is the first function for reading in, this was made to only read in the file with 5 words
+//it was later updated to also read in 7 letter words from the file and store them in a separate list
 void getWords(char *fileName, char ***words5, char ***words7, int *wordCount5, int *wordCount7){
     FILE *file = fopen(fileName, "r");
     if (!file){
@@ -79,6 +82,8 @@ void getWords(char *fileName, char ***words5, char ***words7, int *wordCount5, i
     fclose(file);
 }
 
+//compareWords is the logic that gets called by the gameplay functions
+//per the name, it compares the user word to the target word to create the main puzzle solving aspect of the game
 void compareWords(char *guess, char *target, int wordLength){
     for(int i=0; i<wordLength; i++){
         if(guess[i] == target[i]){
@@ -92,6 +97,8 @@ void compareWords(char *guess, char *target, int wordLength){
     printf("\n");
 }
 
+//playGame is the gameloop that selects a target word and allows for the user to input their guesses
+//works with the lists of word that have set length
 void playGame(char **words, int wordCount, int daily, int wordLength){
     char target[wordLength + 1];
 
@@ -132,6 +139,8 @@ void playGame(char **words, int wordCount, int daily, int wordLength){
     printf("You ran out of guesses. The word was: %s\n", target);
 }
 
+
+//trims trailing spaces from words, this is only used for reading in the words of arbitrary length
 void trimTrailing(char *str){
     int end = strlen(str) - 1;
     while (end >= 0 && isspace((char)str[end])){
@@ -140,6 +149,8 @@ void trimTrailing(char *str){
     }
 }
 
+//reads in the file of the words with varying length.
+//separate from the other file reader due to the differences in logic
 void getWordsArbitrary(char *fileName, char ***words, int *wordCount){
     FILE *file = fopen(fileName, "r");
     if (!file){
@@ -196,6 +207,7 @@ void getWordsArbitrary(char *fileName, char ***words, int *wordCount){
     fclose(file);
 }
 
+//gameloop for words of arbitrary length. Rather than words being set length, it determines length within the function
 void playGameArb(char **words, int wordCount, int daily){
     char *target;
 

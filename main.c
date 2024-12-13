@@ -3,6 +3,8 @@
 #include <string.h>
 #include "gameLoop.h"
 
+//the main function simply holds the menu/UI loop and calls functions from gameloop
+//basically the "frontend" of the program
 int main(){
     char **words5 = NULL;
     char **words7 = NULL;
@@ -11,10 +13,11 @@ int main(){
     int wordCount7;
     int wordCountA;
 
-    //load words
+    //load words from file(s)
     getWords("word-list.txt", &words5, &words7, &wordCount5, &wordCount7);
     getWordsArbitrary("various-words.txt", &wordsA, &wordCountA);
 
+    //basic menu loop
     while(1){
         printf("\n\e[1;92m**WORDLE GAME**\n");
         printf("\e[1;93m1. Play with a random word\n");
